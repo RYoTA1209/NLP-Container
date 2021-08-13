@@ -36,5 +36,6 @@ RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
 WORKDIR /root/mecab-ipadic-neologd
 RUN ./bin/install-mecab-ipadic-neologd -n -y
 RUN echo "dicdir = "`mecab-config --dicdir`"/mecab-ipadic-neologd" > /usr/local/etc/mecabrc
+ENV MECABRC "/usr/local/etc/mecabrc"
 
 WORKDIR /
