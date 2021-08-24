@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 # basic libs
 RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y wget build-essential gcc zlib1g-dev libbz2-dev git curl xz-utils file sudo unzip liblzma-dev
+RUN apt-get install -y wget build-essential gcc zlib1g-dev libbz2-dev git curl xz-utils file sudo unzip liblzma-dev libsqlite3-dev
 
 # latest openssl for python
 WORKDIR /root/
@@ -18,7 +18,7 @@ WORKDIR /root/
 RUN wget https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz \
         && tar zxf Python-3.6.8.tgz \
         && cd Python-3.6.8 \
-        && ./configure \
+        && ./configure --enable-loadable-sqlite-extensions \
         && make altinstall
 ENV PYTHONIOENCODING "utf-8"
 
